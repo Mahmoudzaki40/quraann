@@ -453,36 +453,54 @@
             color: #e2e8f0;
         }
         
+        /* تصميم جديد للمشغل الصوتي العائم */
         .audio-controls {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            background: var(--card-bg);
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px;
             border-radius: 15px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
-            width: 300px;
+            width: 280px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .audio-controls:hover {
+            background: rgba(255, 255, 255, 0.95);
         }
         
         .dark-mode .audio-controls {
-            background: var(--dark-card);
+            background: rgba(26, 32, 44, 0.85);
+            border-color: rgba(76, 201, 240, 0.2);
+        }
+        
+        .dark-mode .audio-controls:hover {
+            background: rgba(26, 32, 44, 0.95);
         }
         
         .audio-controls-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .close-audio-btn {
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
             color: var(--text-color);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .close-audio-btn:hover {
+            opacity: 1;
         }
         
         .dark-mode .close-audio-btn {
@@ -492,268 +510,119 @@
         .audio-speed-control {
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
         
         .audio-speed-control label {
-            margin-left: 10px;
+            margin-left: 8px;
+            font-size: 0.9rem;
         }
         
-        .achievements-panel {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-        
-        .dark-mode .achievements-panel {
-            background: rgba(26, 32, 44, 0.8);
-        }
-        
-        .achievements-panel h3 {
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-        
-        .dark-mode .achievements-panel h3 {
-            color: #4cc9f0;
-        }
-        
-        .achievement {
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.5);
-            display: flex;
-            align-items: center;
-        }
-        
-        .dark-mode .achievement {
-            background: rgba(45, 55, 72, 0.5);
-        }
-        
-        .achievement.unlocked {
-            border-left: 4px solid var(--success-color);
-        }
-        
-        .achievement.locked {
-            opacity: 0.7;
-        }
-        
-        .achievement span {
-            margin-left: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .achievement strong {
+        .audio-speed-control input {
             flex-grow: 1;
+            margin: 0 8px;
         }
         
-        .achievement small {
-            color: #666;
-            font-size: 0.8rem;
-        }
-        
-        .dark-mode .achievement small {
-            color: #a0aec0;
-        }
-        
-        .badges-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .badge {
+        /* تصميم زر التسميع العائم */
+        .recitation-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
             width: 60px;
             height: 60px;
             border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            position: relative;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
             transition: all 0.3s;
         }
         
-        .badge:hover {
+        .recitation-btn:hover {
             transform: scale(1.1);
         }
         
-        .badge-gold {
-            background: var(--badge-gold);
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .badge-silver {
-            background: var(--badge-silver);
-            box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
-        }
-        
-        .badge-bronze {
-            background: var(--badge-bronze);
-            box-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
-        }
-        
-        .badge-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--text-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        
-        .badge:hover .badge-tooltip {
-            opacity: 1;
-        }
-        
-        .dark-mode .badge-tooltip {
-            background: var(--dark-card);
-            color: white;
-        }
-        
-        .confetti {
+        /* نافذة التسميع */
+        .recitation-panel {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            animation: fadeIn 0.5s;
-        }
-        
-        .celebration {
-            background: white;
-            padding: 20px;
+            bottom: 150px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
             border-radius: 15px;
-            text-align: center;
-            animation: bounce 0.5s;
-        }
-        
-        .dark-mode .celebration {
-            background: var(--dark-card);
-            color: white;
-        }
-        
-        .character {
-            position: fixed;
-            bottom: 100px;
-            left: 20px;
-            width: 100px;
-            z-index: 100;
-            transition: all 0.3s;
-        }
-        
-        .settings-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        .settings-panel {
-            position: fixed;
-            top: 70px;
-            left: 20px;
-            background: white;
-            border-radius: 10px;
             padding: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
+            box-shadow: var(--shadow);
+            width: 300px;
             display: none;
         }
         
-        .dark-mode .settings-panel {
+        .dark-mode .recitation-panel {
             background: var(--dark-card);
-            color: white;
         }
         
-        .settings-panel h3 {
+        .recitation-panel h3 {
             margin-bottom: 10px;
             color: var(--primary-color);
+            text-align: center;
         }
         
-        .dark-mode .settings-panel h3 {
-            color: #4cc9f0;
+        .recitation-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 15px 0;
+            line-height: 1.8;
         }
         
-        .settings-option {
+        .recitation-blank {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px solid var(--primary-color);
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        .recitation-input {
+            display: block;
+            width: 100%;
+            padding: 10px;
             margin: 10px 0;
-            display: flex;
-            align-items: center;
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            text-align: center;
         }
         
-        .settings-option label {
-            margin-right: 10px;
-        }
-        
-        .tafsir {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 10px;
+        .recitation-feedback {
+            text-align: center;
             margin-top: 10px;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
-            line-height: 1.6;
+            font-weight: bold;
+            min-height: 24px;
         }
         
-        .dark-mode .tafsir {
-            background: rgba(26, 32, 44, 0.9);
-            color: #e2e8f0;
-        }
-        
-        .tafsir h4 {
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-        
-        .dark-mode .tafsir h4 {
-            color: #4cc9f0;
-        }
-        
-        .verse-highlight {
+        /* تأثير تمييز الكلمات أثناء التلاوة */
+        .word-highlight {
             background-color: var(--highlight-color);
+            color: #000;
             padding: 2px 5px;
             border-radius: 5px;
             transition: all 0.3s;
+            animation: wordPulse 1s infinite;
         }
         
-        .word-by-word {
-            display: inline-block;
-            margin: 0 2px;
-            cursor: pointer;
-            transition: all 0.2s;
+        @keyframes wordPulse {
+            0% { background-color: var(--highlight-color); }
+            50% { background-color: #ffcc00; }
+            100% { background-color: var(--highlight-color); }
         }
         
-        .word-by-word:hover {
-            transform: scale(1.1);
-            background-color: rgba(255, 255, 0, 0.3);
-        }
+        /* بقية الأنماط... */
         
         /* أنماط قسم الاختبارات */
         .quiz-options {
@@ -1105,6 +974,12 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 159, 243, 0); }
         }
         
+        @keyframes wordPulse {
+            0% { background-color: var(--highlight-color); }
+            50% { background-color: #ffcc00; }
+            100% { background-color: var(--highlight-color); }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -1161,6 +1036,12 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.2rem;
+            }
+            
+            .recitation-panel {
+                width: 90%;
+                right: 5%;
+                bottom: 160px;
             }
         }
     </style>
@@ -1383,19 +1264,33 @@
             
             <button class="btn" style="width: 100%; margin-top: 20px;" onclick="createNewChallenge()">إنشاء تحد جديد</button>
         </div>
-        
-        <div class="audio-controls" id="audioControls" style="display: none;">
-            <div class="audio-controls-header">
-                <span id="nowPlaying">لا يتم تشغيل شيء</span>
-                <button class="close-audio-btn" onclick="document.getElementById('audioControls').style.display = 'none'">✕</button>
-            </div>
-            <audio id="audioPlayer" controls style="width: 100%;"></audio>
-            <div class="audio-speed-control">
-                <label for="audioSpeedRange">سرعة التشغيل:</label>
-                <input type="range" id="audioSpeedRange" min="0.5" max="2" step="0.1" value="1" oninput="changeAudioSpeed(this.value)">
-                <span id="speedValue">1x</span>
-            </div>
+    </div>
+
+    <!-- المشغل الصوتي العائم -->
+    <div class="audio-controls" id="audioControls" style="display: none;">
+        <div class="audio-controls-header">
+            <span id="nowPlaying">لا يتم تشغيل شيء</span>
+            <button class="close-audio-btn" onclick="document.getElementById('audioControls').style.display = 'none'">✕</button>
         </div>
+        <audio id="audioPlayer" controls style="width: 100%;"></audio>
+        <div class="audio-speed-control">
+            <label for="audioSpeedRange">سرعة التشغيل:</label>
+            <input type="range" id="audioSpeedRange" min="0.5" max="2" step="0.1" value="1" oninput="changeAudioSpeed(this.value)">
+            <span id="speedValue">1x</span>
+        </div>
+    </div>
+
+    <!-- زر التسميع العائم -->
+    <button class="recitation-btn" id="recitationBtn" onclick="toggleRecitationPanel()">🗣️</button>
+    
+    <!-- نافذة التسميع -->
+    <div class="recitation-panel" id="recitationPanel">
+        <h3>تمرين التسميع</h3>
+        <div class="recitation-text" id="recitationText"></div>
+        <input type="text" class="recitation-input" id="recitationInput" placeholder="أدخل الكلمة الناقصة">
+        <div class="recitation-feedback" id="recitationFeedback"></div>
+        <button class="btn" onclick="checkRecitation()">تحقق</button>
+        <button class="btn" onclick="toggleRecitationPanel()" style="margin-top: 10px;">إغلاق</button>
     </div>
 
     <img src="https://i.imgur.com/JQ6QY3D.png" class="character" id="character" alt="شخصية مرافقة">
@@ -1423,6 +1318,11 @@
         let mediaRecorder = null;
         let audioChunks = [];
         let recordingInterval = null;
+        
+        // متغيرات التسميع
+        let currentRecitationVerse = null;
+        let currentRecitationWords = [];
+        let currentBlankIndex = 0;
         
         // متغيرات الاختبارات
         let currentQuiz = null;
@@ -1597,6 +1497,7 @@
             if (currentAudio) {
                 currentAudio.pause();
                 clearInterval(verseTimerInterval);
+                clearWordHighlights();
             }
             
             currentAudio = new Audio(audioUrl);
@@ -1618,11 +1519,15 @@
             // تحريك الشخصية
             animateCharacter();
             
+            // تمييز الكلمات أثناء التلاوة
+            setupWordHighlights(verseElement, verseText);
+            
             currentAudio.play();
             isPlaying = true;
             
             currentAudio.onended = () => {
                 clearInterval(verseTimerInterval);
+                clearWordHighlights();
                 
                 // تسجيل الآية كمستمع إليها
                 const verseKey = `${currentSurah.text.number}_${verseIndex}`;
@@ -1659,8 +1564,66 @@
             
             currentAudio.onerror = () => {
                 clearInterval(verseTimerInterval);
+                clearWordHighlights();
                 alert('خطأ في تشغيل الصوت. يرجى المحاولة مرة أخرى.');
             };
+        }
+        
+        // إعداد تمييز الكلمات أثناء التلاوة
+        function setupWordHighlights(verseElement, verseText) {
+            // تقسيم الآية إلى كلمات
+            const words = verseText.split(' ');
+            let html = '';
+            
+            words.forEach((word, index) => {
+                html += `<span class="word-by-word" data-word="${index}">${word} </span>`;
+            });
+            
+            verseElement.innerHTML = html;
+            
+            // إضافة رقم الآية مرة أخرى
+            const verseNumber = verseElement.querySelector('.verse-number');
+            if (verseNumber) {
+                verseElement.appendChild(verseNumber);
+            }
+            
+            // إضافة حدث لتمييز الكلمات أثناء التشغيل
+            const wordElements = verseElement.querySelectorAll('.word-by-word');
+            let currentWordIndex = 0;
+            
+            // تقدير الوقت لكل كلمة (افتراضياً 0.5 ثانية لكل كلمة)
+            const wordDuration = 500;
+            
+            const highlightInterval = setInterval(() => {
+                if (currentWordIndex > 0) {
+                    wordElements[currentWordIndex - 1].classList.remove('word-highlight');
+                }
+                
+                if (currentWordIndex < wordElements.length) {
+                    wordElements[currentWordIndex].classList.add('word-highlight');
+                    currentWordIndex++;
+                } else {
+                    clearInterval(highlightInterval);
+                }
+            }, wordDuration);
+            
+            // إيقاف المؤقت عند إيقاف التشغيل
+            currentAudio.onpause = () => {
+                clearInterval(highlightInterval);
+                clearWordHighlights();
+            };
+            
+            currentAudio.onended = () => {
+                clearInterval(highlightInterval);
+                clearWordHighlights();
+            };
+        }
+        
+        // مسح تمييز الكلمات
+        function clearWordHighlights() {
+            document.querySelectorAll('.word-highlight').forEach(el => {
+                el.classList.remove('word-highlight');
+            });
         }
         
         // بدء مؤقت الآية
@@ -1704,6 +1667,7 @@
                     currentAudio.pause();
                     isPlaying = false;
                     clearInterval(verseTimerInterval);
+                    clearWordHighlights();
                 } else {
                     currentAudio.play();
                     isPlaying = true;
@@ -1721,6 +1685,7 @@
                 document.querySelectorAll('.verse').forEach(v => v.classList.remove('playing'));
                 document.getElementById('audioControls').style.display = 'none';
                 clearInterval(verseTimerInterval);
+                clearWordHighlights();
             }
         }
         
@@ -1811,6 +1776,7 @@
                 v.classList.remove('playing', 'played');
             });
             clearInterval(verseTimerInterval);
+            clearWordHighlights();
         }
         
         // تحديث الإنجازات
@@ -2489,6 +2455,59 @@
             }, 1500);
         }
         
+        // عرض/إخفاء نافذة التسميع
+        function toggleRecitationPanel() {
+            const panel = document.getElementById('recitationPanel');
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                if (!currentSurah) {
+                    alert('يرجى تحميل سورة أولاً');
+                    return;
+                }
+                
+                // اختيار آية عشوائية للتسميع
+                const randomIndex = Math.floor(Math.random() * currentSurah.text.ayahs.length);
+                currentRecitationVerse = currentSurah.text.ayahs[randomIndex].text;
+                currentRecitationWords = currentRecitationVerse.split(' ');
+                
+                // اختيار كلمة عشوائية لإخفائها
+                currentBlankIndex = Math.floor(Math.random() * (currentRecitationWords.length - 2)) + 1;
+                const blankWord = currentRecitationWords[currentBlankIndex];
+                
+                // عرض النص مع الفراغ
+                const displayText = [...currentRecitationWords];
+                displayText[currentBlankIndex] = '<span class="recitation-blank">______</span>';
+                document.getElementById('recitationText').innerHTML = displayText.join(' ');
+                
+                // مسح المدخلات السابقة
+                document.getElementById('recitationInput').value = '';
+                document.getElementById('recitationFeedback').textContent = '';
+                
+                panel.style.display = 'block';
+            }
+        }
+        
+        // التحقق من التسميع
+        function checkRecitation() {
+            const userInput = document.getElementById('recitationInput').value.trim();
+            const correctWord = currentRecitationWords[currentBlankIndex];
+            const feedbackDiv = document.getElementById('recitationFeedback');
+            
+            if (userInput === correctWord) {
+                feedbackDiv.textContent = 'أحسنت! الإجابة صحيحة';
+                feedbackDiv.style.color = 'var(--success-color)';
+                
+                // عرض احتفال صغير
+                setTimeout(() => {
+                    showCelebration('إجابة صحيحة!');
+                }, 500);
+            } else {
+                feedbackDiv.textContent = `ليس تماماً، الكلمة الصحيحة هي: ${correctWord}`;
+                feedbackDiv.style.color = 'var(--accent-color)';
+            }
+        }
+        
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
             // تطبيق الإعدادات المحفوظة
@@ -2575,6 +2594,9 @@
                     break;
                 case 'KeyR':
                     if (document.getElementById('recordingBtn')) toggleRecording();
+                    break;
+                case 'KeyS':
+                    toggleRecitationPanel();
                     break;
             }
         });
