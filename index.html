@@ -21,6 +21,9 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             --dark-bg: #1a1a2e;
             --dark-card: #16213e;
+            --badge-gold: #ffd700;
+            --badge-silver: #c0c0c0;
+            --badge-bronze: #cd7f32;
         }
         
         * {
@@ -439,6 +442,17 @@
             border-radius: 3px;
         }
         
+        .progress-text {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: white;
+        }
+        
+        .dark-mode .progress-text {
+            color: #e2e8f0;
+        }
+        
         .audio-controls {
             position: fixed;
             bottom: 20px;
@@ -542,6 +556,70 @@
         
         .dark-mode .achievement small {
             color: #a0aec0;
+        }
+        
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .badge:hover {
+            transform: scale(1.1);
+        }
+        
+        .badge-gold {
+            background: var(--badge-gold);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .badge-silver {
+            background: var(--badge-silver);
+            box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+        }
+        
+        .badge-bronze {
+            background: var(--badge-bronze);
+            box-shadow: 0 0 10px rgba(205, 127, 50, 0.5);
+        }
+        
+        .badge-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .badge:hover .badge-tooltip {
+            opacity: 1;
+        }
+        
+        .dark-mode .badge-tooltip {
+            background: var(--dark-card);
+            color: white;
         }
         
         .confetti {
@@ -656,6 +734,25 @@
         
         .dark-mode .tafsir h4 {
             color: #4cc9f0;
+        }
+        
+        .verse-highlight {
+            background-color: var(--highlight-color);
+            padding: 2px 5px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .word-by-word {
+            display: inline-block;
+            margin: 0 2px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .word-by-word:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 0, 0.3);
         }
         
         /* أنماط قسم الاختبارات */
@@ -828,6 +925,138 @@
             font-size: 1.5rem;
         }
         
+        /* أنماط قسم التحديات */
+        .challenges-container {
+            margin-top: 20px;
+        }
+        
+        .challenge-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .dark-mode .challenge-card {
+            background: rgba(26, 32, 44, 0.9);
+        }
+        
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .challenge-title {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .challenge-status {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .challenge-active {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .challenge-pending {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        .challenge-participants {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .participant {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .participant-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        
+        /* أنماط قسم التصحيح الصوتي */
+        .recording-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .recording-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .recording-btn.recording {
+            animation: pulse 1s infinite;
+        }
+        
+        .recording-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .recording-visualizer {
+            width: 100%;
+            height: 50px;
+            margin: 15px 0;
+            background: rgba(0,0,0,0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .recording-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3498db, #9b59b6);
+            transition: width 0.1s;
+        }
+        
+        .pronunciation-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .feedback-good {
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid var(--success-color);
+        }
+        
+        .feedback-average {
+            background: rgba(241, 196, 15, 0.2);
+            border: 1px solid var(--accent-color);
+        }
+        
+        .feedback-poor {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid #e74c3c;
+        }
+        
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -927,6 +1156,12 @@
             .quiz-options {
                 grid-template-columns: 1fr;
             }
+            
+            .badge {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -969,6 +1204,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('learning')">التعلم</button>
             <button class="tab-btn" onclick="switchTab('quizzes')">الاختبارات</button>
+            <button class="tab-btn" onclick="switchTab('challenges')">التحديات</button>
         </div>
         
         <div class="controls-panel" id="learningControls">
@@ -1022,10 +1258,36 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
+            <div class="progress-text" id="progressText">0%</div>
             
             <div class="achievements-panel">
                 <h3>إنجازاتك</h3>
                 <div id="achievementsList"></div>
+                
+                <h3 style="margin-top: 20px;">شاراتك</h3>
+                <div class="badges-container" id="badgesContainer">
+                    <div class="badge badge-gold">
+                        🏆
+                        <span class="badge-tooltip">حافظ السورة</span>
+                    </div>
+                    <div class="badge badge-silver">
+                        ⭐
+                        <span class="badge-tooltip">المثابر</span>
+                    </div>
+                    <div class="badge badge-bronze">
+                        🔥
+                        <span class="badge-tooltip">المبتدئ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recording-section" id="recordingSection" style="display: none;">
+                <h3>تدرب على النطق</h3>
+                <div class="recording-visualizer">
+                    <div class="recording-bar" id="recordingBar"></div>
+                </div>
+                <button class="recording-btn" id="recordingBtn" onclick="toggleRecording()">🎤</button>
+                <div class="pronunciation-feedback" id="pronunciationFeedback" style="display: none;"></div>
             </div>
         </div>
         
@@ -1080,6 +1342,48 @@
             </div>
         </div>
         
+        <div class="challenges-container" id="challengesContent" style="display: none;">
+            <h2 style="text-align: center; margin-bottom: 20px;">تحديات الحفظ</h2>
+            
+            <div class="challenge-card">
+                <div class="challenge-header">
+                    <div class="challenge-title">تحدي سورة الفاتحة</div>
+                    <div class="challenge-status challenge-active">نشط</div>
+                </div>
+                <p>احفظ سورة الفاتحة كاملة في أقل من يومين</p>
+                <div class="challenge-participants">
+                    <div class="participant">
+                        <span>أنت</span>
+                        <div class="participant-avatar">A</div>
+                    </div>
+                    <div class="participant">
+                        <span>أحمد</span>
+                        <div class="participant-avatar">أ</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="challenge-card">
+                <div class="challenge-header">
+                    <div class="challenge-title">تحدي الصفحة الذهبية</div>
+                    <div class="challenge-status challenge-pending">قيد الانتظار</div>
+                </div>
+                <p>احفظ الصفحة الأخيرة من الجزء الثلاثين</p>
+                <div class="challenge-participants">
+                    <div class="participant">
+                        <span>أنت</span>
+                        <div class="participant-avatar">A</div>
+                    </div>
+                    <div class="participant">
+                        <span>محمد</span>
+                        <div class="participant-avatar">م</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn" style="width: 100%; margin-top: 20px;" onclick="createNewChallenge()">إنشاء تحد جديد</button>
+        </div>
+        
         <div class="audio-controls" id="audioControls" style="display: none;">
             <div class="audio-controls-header">
                 <span id="nowPlaying">لا يتم تشغيل شيء</span>
@@ -1115,6 +1419,10 @@
         let playbackSpeed = parseFloat(localStorage.getItem('playbackSpeed')) || 1;
         let highlightColor = localStorage.getItem('highlightColor') || '#ff9ff3';
         let verseTimerInterval = null;
+        let recording = false;
+        let mediaRecorder = null;
+        let audioChunks = [];
+        let recordingInterval = null;
         
         // متغيرات الاختبارات
         let currentQuiz = null;
@@ -1122,6 +1430,43 @@
         let currentQuestionIndex = 0;
         let quizScore = 0;
         let quizMistakes = [];
+        
+        // نظام المكافآت
+        class RewardSystem {
+            constructor() {
+                this.rewards = JSON.parse(localStorage.getItem('rewards')) || {};
+                this.levels = [
+                    { verses: 10, title: "مبتدئ", badge: "bronze" },
+                    { verses: 30, title: "متقدم", badge: "silver" },
+                    { verses: 60, title: "متميز", badge: "gold" }
+                ];
+            }
+            
+            checkForRewards() {
+                const totalVerses = Object.keys(learnedVerses).length;
+                const currentLevel = this.getCurrentLevel(totalVerses);
+                
+                if (!this.rewards[currentLevel.title]) {
+                    this.rewards[currentLevel.title] = true;
+                    localStorage.setItem('rewards', JSON.stringify(this.rewards));
+                    this.showLevelUpMessage(currentLevel);
+                    updateBadges();
+                }
+            }
+            
+            getCurrentLevel(totalVerses) {
+                return this.levels.reduce((acc, level) => {
+                    return totalVerses >= level.verses ? level : acc;
+                }, { title: "لم يبدأ", verses: 0, badge: "" });
+            }
+            
+            showLevelUpMessage(level) {
+                const message = `مبروك! لقد وصلت إلى مستوى ${level.title} بحفظ ${level.verses} آية`;
+                showCelebration(message);
+            }
+        }
+        
+        const rewardSystem = new RewardSystem();
         
         // تحميل قائمة السور
         async function loadSurahsList() {
@@ -1142,6 +1487,7 @@
                     
                     // تحديث الإنجازات بعد تحميل السور
                     updateAchievements();
+                    updateBadges();
                 } else {
                     throw new Error('فشل في تحميل قائمة السور');
                 }
@@ -1186,6 +1532,9 @@
                     // حفظ السورة المحملة في localStorage
                     localStorage.setItem('lastSurah', surahNumber);
                     localStorage.setItem('lastReciter', reciter);
+                    
+                    // إظهار قسم التسجيل الصوتي
+                    document.getElementById('recordingSection').style.display = 'block';
                 } else {
                     throw new Error('فشل في تحميل السورة');
                 }
@@ -1297,6 +1646,7 @@
                 
                 updateProgress();
                 updateAchievements();
+                rewardSystem.checkForRewards();
                 
                 if (repeatVerse) {
                     setTimeout(() => playVerse(verseIndex), 1000);
@@ -1380,6 +1730,13 @@
             const btn = event.target;
             btn.style.background = repeatVerse ? '#e74c3c' : '#27ae60';
             btn.textContent = repeatVerse ? '🔁 إيقاف تكرار الآية' : '🔁 تكرار الآية';
+            
+            // إضافة تأثيرات بصرية
+            if (repeatVerse) {
+                btn.style.animation = 'pulse 1s infinite';
+            } else {
+                btn.style.animation = 'none';
+            }
         }
         
         // تكرار السورة
@@ -1438,8 +1795,10 @@
         function updateProgress() {
             if (!currentSurah) return;
             
-            const progress = (playedVerses.size / currentSurah.text.ayahs.length) * 100;
+            const totalVerses = currentSurah.text.ayahs.length;
+            const progress = (playedVerses.size / totalVerses) * 100;
             document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `${playedVerses.size}/${totalVerses} (${Math.round(progress)}%)`;
         }
         
         // إعادة تعيين التشغيل
@@ -1447,6 +1806,7 @@
             currentVerseIndex = 0;
             playedVerses.clear();
             document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('progressText').textContent = '0%';
             document.querySelectorAll('.verse').forEach(v => {
                 v.classList.remove('playing', 'played');
             });
@@ -1470,6 +1830,9 @@
                 }},
                 { id: 'quiz_taker', title: 'المختبر الناجح', desc: "أكملت اختباراً بنجاح", condition: ()=> {
                     return localStorage.getItem('quiz_completed') === 'true';
+                }},
+                { id: 'recorder', title: 'القارئ الصغير', desc: "سجلت قراءتك لأول مرة", condition: ()=> {
+                    return localStorage.getItem('first_recording') === 'true';
                 }}
             ];
             
@@ -1493,6 +1856,30 @@
                 `;
                 list.appendChild(div);
             });
+        }
+        
+        // تحديث الشارات
+        function updateBadges() {
+            const totalVerses = Object.keys(learnedVerses).length;
+            const badges = document.querySelectorAll('.badge');
+            
+            if (totalVerses >= 60) {
+                badges[0].style.opacity = '1';
+                badges[1].style.opacity = '1';
+                badges[2].style.opacity = '1';
+            } else if (totalVerses >= 30) {
+                badges[0].style.opacity = '0.5';
+                badges[1].style.opacity = '1';
+                badges[2].style.opacity = '1';
+            } else if (totalVerses >= 10) {
+                badges[0].style.opacity = '0.5';
+                badges[1].style.opacity = '0.5';
+                badges[2].style.opacity = '1';
+            } else {
+                badges[0].style.opacity = '0.5';
+                badges[1].style.opacity = '0.5';
+                badges[2].style.opacity = '0.5';
+            }
         }
         
         // عرض احتفال بالإنجاز
@@ -1617,12 +2004,19 @@
                 document.getElementById('learningControls').style.display = 'block';
                 document.getElementById('surahContent').style.display = 'block';
                 document.getElementById('quizContent').style.display = 'none';
-            } else {
+                document.getElementById('challengesContent').style.display = 'none';
+            } else if (tab === 'quizzes') {
                 document.getElementById('learningControls').style.display = 'none';
                 document.getElementById('surahContent').style.display = 'none';
                 document.getElementById('quizContent').style.display = 'block';
+                document.getElementById('challengesContent').style.display = 'none';
                 document.getElementById('quizContainer').style.display = 'none';
                 document.querySelector('.quiz-options').style.display = 'grid';
+            } else if (tab === 'challenges') {
+                document.getElementById('learningControls').style.display = 'none';
+                document.getElementById('surahContent').style.display = 'none';
+                document.getElementById('quizContent').style.display = 'none';
+                document.getElementById('challengesContent').style.display = 'block';
             }
         }
         
@@ -1999,6 +2393,102 @@
             startQuiz(currentQuiz);
         }
         
+        // إنشاء تحد جديد
+        function createNewChallenge() {
+            alert('هذه الميزة قيد التطوير وسيتم إضافتها قريباً!');
+        }
+        
+        // تسجيل الصوت
+        async function toggleRecording() {
+            if (!recording) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+                    
+                    mediaRecorder.ondataavailable = event => {
+                        audioChunks.push(event.data);
+                    };
+                    
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks);
+                        const audioUrl = URL.createObjectURL(audioBlob);
+                        analyzeRecording(audioUrl);
+                    };
+                    
+                    mediaRecorder.start();
+                    recording = true;
+                    document.getElementById('recordingBtn').classList.add('recording');
+                    
+                    // مؤشر التسجيل
+                    recordingInterval = setInterval(() => {
+                        const randomLevel = Math.floor(Math.random() * 80) + 20;
+                        document.getElementById('recordingBar').style.width = `${randomLevel}%`;
+                    }, 100);
+                    
+                    // إخفاء أي ملاحظات سابقة
+                    document.getElementById('pronunciationFeedback').style.display = 'none';
+                    
+                    // تسجيل أول مرة
+                    if (!localStorage.getItem('first_recording')) {
+                        localStorage.setItem('first_recording', 'true');
+                        updateAchievements();
+                    }
+                    
+                } catch (error) {
+                    console.error('خطأ في الوصول إلى الميكروفون:', error);
+                    alert('تعذر الوصول إلى الميكروفون. يرجى التحقق من الأذونات.');
+                }
+            } else {
+                mediaRecorder.stop();
+                clearInterval(recordingInterval);
+                recording = false;
+                document.getElementById('recordingBtn').classList.remove('recording');
+                document.getElementById('recordingBar').style.width = '0%';
+            }
+        }
+        
+        // تحليل التسجيل الصوتي (محاكاة)
+        function analyzeRecording(audioUrl) {
+            // في التطبيق الحقيقي، هنا سيتم إرسال التسجيل إلى خدمة تحليل النطق
+            // هذه مجرد محاكاة للوظيفة
+            
+            setTimeout(() => {
+                const feedbackDiv = document.getElementById('pronunciationFeedback');
+                const randomScore = Math.floor(Math.random() * 100);
+                
+                if (randomScore > 80) {
+                    feedbackDiv.className = 'pronunciation-feedback feedback-good';
+                    feedbackDiv.innerHTML = `
+                        <h4>نطق ممتاز! 👏</h4>
+                        <p>حصلت على ${randomScore}%</p>
+                        <p>نطقك واضح وصحيح، واصل التقدم!</p>
+                    `;
+                } else if (randomScore > 50) {
+                    feedbackDiv.className = 'pronunciation-feedback feedback-average';
+                    feedbackDiv.innerHTML = `
+                        <h4>نطق جيد 👍</h4>
+                        <p>حصلت على ${randomScore}%</p>
+                        <p>هناك بعض الأخطاء البسيطة، استمع إلى الآية مرة أخرى وحاول تحسين نطقك</p>
+                    `;
+                } else {
+                    feedbackDiv.className = 'pronunciation-feedback feedback-poor';
+                    feedbackDiv.innerHTML = `
+                        <h4>يحتاج تحسين 👎</h4>
+                        <p>حصلت على ${randomScore}%</p>
+                        <p>استمع إلى الآية مرة أخرى وركز على النطق الصحيح للكلمات</p>
+                    `;
+                }
+                
+                feedbackDiv.style.display = 'block';
+                
+                // تشغيل التسجيل للمستخدم
+                const audio = new Audio(audioUrl);
+                audio.play();
+                
+            }, 1500);
+        }
+        
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
             // تطبيق الإعدادات المحفوظة
@@ -2043,7 +2533,16 @@
                     document.getElementById('settingsPanel').style.display = 'none';
                 }
             });
+            
+            // تسجيل حدث تحليلات عند فتح التطبيق
+            trackEvent('App', 'Open', 'Homepage');
         });
+        
+        // تتبع الأحداث للتحليلات
+        function trackEvent(category, action, label) {
+            // في التطبيق الحقيقي، هنا سيتم إرسال البيانات إلى خدمة التحليلات
+            console.log(`Event Tracked: ${category} - ${action} - ${label}`);
+        }
         
         // التحكم بلوحة المفاتيح
         document.addEventListener('keydown', function(e) {
@@ -2073,6 +2572,9 @@
                     break;
                 case 'BracketLeft':
                     if (currentAudio) setPlaybackSpeed(Math.max(0.5, currentAudio.playbackRate - 0.1));
+                    break;
+                case 'KeyR':
+                    if (document.getElementById('recordingBtn')) toggleRecording();
                     break;
             }
         });
