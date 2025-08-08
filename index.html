@@ -2084,12 +2084,30 @@
                 return;
             }
             
-            // في وضع الحفظ، لا نسمح بالنقر العادي
+            // في وضع الحفظ، السماح بالنقر لتشغيل الآية المحددة مباشرة
             if (memorizationMode) {
-                showInfo('في وضع الحفظ، استخدم أزرار التحكم الخاصة');
+                // إذا كانت الآية نفسها وتعمل حالياً، لا نفعل شيء
+                if (memorizationVerseIndex === verseIndex && isPlaying) {
+                    return;
+                }
+                
+                // إذا كانت الآية نفسها في حالة انتظار، إعادة تشغيلها
+                if (memorizationVerseIndex === verseIndex && isWaitingForRepeat) {
+                    clearWaitingState();
+                    currentRepetition = 0; // إعادة تعيين العداد
+                    playVerseInMemorizationMode(verseIndex);
+                    return;
+                }
+                
+                // تشغيل آية جديدة في وضع الحفظ
+                clearWaitingState();
+                memorizationVerseIndex = verseIndex;
+                currentRepetition = 0;
+                playVerseInMemorizationMode(verseIndex);
                 return;
             }
             
+            // الوضع العادي
             // إذا كانت الآية نفسها التي تعمل حالياً
             if (currentVerseIndex === verseIndex && isPlaying) {
                 pauseAudio(); // إيقاف مؤقت
