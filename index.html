@@ -2084,18 +2084,24 @@
                 return;
             }
             
-            // في وضع الحفظ، السماح بالنقر لتشغيل الآية المحددة مباشرة
+            // في وضع الحفظ، نفس السلوك كالوضع العادي
             if (memorizationMode) {
-                // إذا كانت الآية نفسها وتعمل حالياً، لا نفعل شيء
+                // إذا كانت الآية نفسها التي تعمل حالياً
                 if (memorizationVerseIndex === verseIndex && isPlaying) {
+                    pauseAudio(); // إيقاف مؤقت
                     return;
                 }
                 
-                // إذا كانت الآية نفسها في حالة انتظار، إعادة تشغيلها
-                if (memorizationVerseIndex === verseIndex && isWaitingForRepeat) {
-                    clearWaitingState();
-                    currentRepetition = 0; // إعادة تعيين العداد
-                    playVerseInMemorizationMode(verseIndex);
+                // إذا كانت الآية نفسها ولكن متوقفة أو في حالة انتظار
+                if (memorizationVerseIndex === verseIndex && (isPaused || isWaitingForRepeat)) {
+                    // إذا كانت في حالة انتظار، نوقف الانتظار ونستأنف
+                    if (isWaitingForRepeat) {
+                        clearWaitingState();
+                        // استئناف من نفس النقطة أو إعادة تشغيل حسب الحاجة
+                        resumeAudio();
+                    } else {
+                        resumeAudio(); // استئناف عادي
+                    }
                     return;
                 }
                 
@@ -2256,11 +2262,22 @@
                 isPaused = true;
                 clearWordHighlights();
                 
-                // تحديث حالة الآية
-                const verseElement = document.querySelector(`[data-verse="${currentVerseIndex}"]`);
-                if (verseElement) {
-                    verseElement.classList.remove('playing');
-                    verseElement.classList.add('paused');
+                // في وضع الحفظ، إيقاف حالة الانتظار أيضاً
+                if (memorizationMode) {
+                    clearWaitingState();
+                    // تحديث حالة الآية
+                    const verseElement = document.querySelector(`[data-verse="${memorizationVerseIndex}"]`);
+                    if (verseElement) {
+                        verseElement.classList.remove('playing', 'waiting-for-repeat');
+                        verseElement.classList.add('paused');
+                    }
+                } else {
+                    // تحديث حالة الآية في الوضع العادي
+                    const verseElement = document.querySelector(`[data-verse="${currentVerseIndex}"]`);
+                    if (verseElement) {
+                        verseElement.classList.remove('playing');
+                        verseElement.classList.add('paused');
+                    }
                 }
                 
                 updatePlayPauseButtons();
@@ -2280,15 +2297,28 @@
                 isPlaying = true;
                 isPaused = false;
                 
-                // تحديث حالة الآية
-                const verseElement = document.querySelector(`[data-verse="${currentVerseIndex}"]`);
-                if (verseElement) {
-                    verseElement.classList.remove('paused');
-                    verseElement.classList.add('playing');
-                    
-                    // إعادة تفعيل تمييز الكلمات
-                    const verseText = currentSurah.text.ayahs[currentVerseIndex].text;
-                    setupWordHighlighting(verseElement, verseText);
+                if (memorizationMode) {
+                    // تحديث حالة الآية في وضع الحفظ
+                    const verseElement = document.querySelector(`[data-verse="${memorizationVerseIndex}"]`);
+                    if (verseElement) {
+                        verseElement.classList.remove('paused', 'waiting-for-repeat');
+                        verseElement.classList.add('playing');
+                        
+                        // إعادة تفعيل تمييز الكلمات
+                        const verseText = currentSurah.text.ayahs[memorizationVerseIndex].text;
+                        setupWordHighlighting(verseElement, verseText);
+                    }
+                } else {
+                    // تحديث حالة الآية في الوضع العادي
+                    const verseElement = document.querySelector(`[data-verse="${currentVerseIndex}"]`);
+                    if (verseElement) {
+                        verseElement.classList.remove('paused');
+                        verseElement.classList.add('playing');
+                        
+                        // إعادة تفعيل تمييز الكلمات
+                        const verseText = currentSurah.text.ayahs[currentVerseIndex].text;
+                        setupWordHighlighting(verseElement, verseText);
+                    }
                 }
                 
                 updatePlayPauseButtons();
